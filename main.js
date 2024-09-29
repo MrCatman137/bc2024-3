@@ -65,7 +65,7 @@ if (options.output && options.display) {
   console.log("Display the result:");
   console.log(JSON.stringify(inputData, null, 2));
 } else if (options.maxRate) {
-  console.log("Max rate:${maxRate}");
+  console.log("Максимальний курс:${maxRate}");
 } else {
   process.exit(0);
 }
