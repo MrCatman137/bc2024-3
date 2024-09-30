@@ -7,6 +7,12 @@ program
   .option("-o, --output <path>", "Path to output file")
   .option("-d, --display", "Display the result in console")
   .option("-m, --maxRate", "Display the maximum currency rate");
+
+//if (program.args )
+if (!process.input) {
+  console.error("Please, specify input file");
+  process.exit(1);
+}
 program.parse();
 
 const options = program.opts();
