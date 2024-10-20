@@ -2,25 +2,23 @@ const { program } = require("commander");
 const fs = require("fs");
 const path = require("path");
 
+program.exitOverride();
+
 program
   .requiredOption("-i, --input <path>", "Path to input file")
   .option("-o, --output <path>", "Path to output file")
   .option("-d, --display", "Display the result in console")
   .option("-m, --maxRate", "Display the maximum currency rate");
 
-//if (program.args )
-if (!process.input) {
-  console.error("Please, specify input file");
-  process.exit(1);
+try {
+  program.parse(process.argv);
+} catch (error) {
+  if (error.code === "commander.missingMandatoryOptionValue") {
+    console.error("Please, specify input file");
+    process.exit(1);
+  }
 }
-program.parse();
-
 const options = program.opts();
-
-if (!options.input) {
-  console.error("Please, specify input file");
-  process.exit(1);
-}
 
 function readFile(filePath) {
   const fullPath = path.resolve(filePath); // converting relative file path to absolute path
